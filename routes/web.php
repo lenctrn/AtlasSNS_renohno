@@ -19,11 +19,16 @@
 //Auth::routes();
 
 
+
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::get('/register', 'Auth\RegisterController@register');
+// 新規登録用view
+Route::get('/registerView','Auth\RegisterController@registerView');
+
+// /registerと言うURLに遷移したときにRegisterControllerのregisterメソッドの処理をします。
+// Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
@@ -34,7 +39,24 @@ Route::get('/top','PostsController@index');
 
 Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/followList','FollowsController@followList');
+Route::get('/followerList','FollowsController@followerList');
+
+// ログアウト機能
+Route::get('/logout','Auth\LoginController@logout');
+
+// 投稿保存用のルート
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
+
+// 投稿一覧表示用のルート
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+
+// 登録処理
+Route::post('/top', 'PostsController@postCreate')->name('post.create');
+// 編集処理
+Route::get('/top/edit/{id}', 'PostsController@edit')->name('post.edit');
+Route::post('/top/update', 'PostsController@update')->name('post.update');
+// 削除処理
+Route::get('/top/post/{id}/destroy', 'PostsController@destroy')->name('post.destroy');

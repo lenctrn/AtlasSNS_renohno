@@ -1,22 +1,105 @@
 @charset "utf-8";
-html{
-}
-body{
-}
+
+html {}
+
+body {}
+
 /* header */
-header{
-    background:#186AC9;
+header {
+    background: #186AC9;
 }
 
 /* main content */
-#row{
+#row {
     display: flex;
     flex-flow: row wrap;
 }
-#container{
+
+#container {
     flex: 0 0 80%;
 }
-#side-bar{
+
+#side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+/* .accordion-title .menu {
+    margin: 0 auto;
+    display: none;
+} */
+
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-container {
+    margin-top: 30px;
+    /* margin-right: 30px; */
+}
+
+.js-accordion-content {
+    display: none;
+}
+
+.accordion-title img {
+    margin-left: 30px;
+}
+
+
+/* 矢印 */
+.accordion-title {
+    position: relative;
+    padding-right: 50px;
+}
+
+.accordion-title::after {
+    border-right: solid 2px #fff;
+    border-top: solid 2px #fff;
+    content: "";
+    display: block;
+    height: 8px;
+    position: absolute;
+    right: 60%;
+    top: 38%;
+    transform: rotate(135deg);
+    transition: transform .3s ease-in-out, top .3s ease-in-out;
+    width: 8px;
+}
+
+.accordion-title.open::after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 45%;
+}
+
+
+/* 投稿フォーム */
+.form-group {
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid #ccc;
+}
+
+.post-form button {
+    border: none;
+}
+
+.btn.btn-success.pull-right img {
+    width: 50px;
+    height: 50px;
+}
+
+/* 削除フォーム */
+img.trash-icon {
+    width: 50px;
+    height: 50px;
+}
+
+/* 編集フォーム */
+.btn.btn-primary img {
+    width: 50px;
+    height: 50px;
 }
